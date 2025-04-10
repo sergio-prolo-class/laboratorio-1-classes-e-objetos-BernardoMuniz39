@@ -3,12 +3,108 @@
  */
 package ifsc.poo;
 
+import java.util.Random;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+
+        System.out.println("Classe lâmpada");
+        System.out.println("");
+        Lampada lampada1 = new Lampada();
+        Lampada lampada2 = new Lampada();
+
+        lampada1.ligar();
+        lampada1.desligar();
+        if(lampada1.verEstado()){
+            System.out.println("Lâmpada 1 está ligada");
+        }else{
+            System.out.println("Lâmpada 1 está desligada"); 
+        }
+
+        lampada2.ligar();
+        lampada2.desligar();
+
+        if(lampada2.verEstado()){
+            System.out.println("Lâmpada 2 está ligada");
+        }else{
+            System.out.println("Lâmpada 2 está desligada"); 
+        }
+
+        System.out.println("---------------------------------------------------------------------------------");
+
+        System.out.println("Classe Pessoa");
+        System.out.println("");
+
+
+        Pessoa alice = new Pessoa();
+        Pessoa bruno = new Pessoa();
+
+
+        alice.setIdade(22);
+        bruno.setIdade(25);
+        alice.setNome("Alice");
+        bruno.setNome("Bruno");
+
+        for(int i = 0; i < 3; i++){
+            bruno.felizAniversario();
+        }
+
+        System.out.println("Idade de Bruno: " + bruno.getIdade());
+        System.out.println("Idade de ALice: " + alice.getIdade());
+
+        alice.setIdade(-44);
+        bruno.setNome("");
+
+        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("Classe Retângulo");
+        System.out.println("");
+
+        Retangulo retangulo = new Retangulo();
+        retangulo.setLargura(5);
+        retangulo.setAltura(4);
+
+        System.out.println("Área: " + retangulo.getArea());
+        System.out.println("Perímetro: " + retangulo.getPerimetro());
+
+        Retangulo[] retangulos = new Retangulo[10];
+
+        Random r = new Random();
+        float razao = 0;
+        int indice = 0;
+
+        for(int i =0; i<10; i++){
+            float altura = r.nextFloat(10);
+            float largura = r.nextFloat(10);
+
+            retangulo.setAltura(altura);
+            retangulo.setLargura(largura);
+            retangulos[i] = retangulo;
+
+            float maiorRazao = retangulo.getArea() / retangulo.getPerimetro();
+
+            if(maiorRazao > razao){
+                indice = i;
+                razao = maiorRazao;
+            }
+        }
+
+        System.out.println("Maior razão foi do retângulo " + indice + ": " + razao);
+
+        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("Classe Relógio");
+        System.out.println("");
+
+        Relogio relogio = new Relogio();
+        relogio.ajustaHora((byte)14, (byte)58, (byte)32);
+        relogio.avancaMinuto();
+        relogio.avancaMinuto();
+        System.out.println(relogio.hora + ":" + relogio.minuto + ":" + relogio.segundo);
+
+
+
+
+
+        
     }
 }
