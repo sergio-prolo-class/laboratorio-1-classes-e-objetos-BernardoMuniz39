@@ -9,20 +9,18 @@ public class App {
 
     public static void main(String[] args) {
 
-        System.out.println("Classe lâmpada");
+        System.out.println("Classe Lâmpada");
         System.out.println("");
         Lampada lampada1 = new Lampada();
         Lampada lampada2 = new Lampada();
 
         lampada1.ligar();
-        lampada1.desligar();
         if(lampada1.verEstado()){
             System.out.println("Lâmpada 1 está ligada");
         }else{
             System.out.println("Lâmpada 1 está desligada"); 
         }
 
-        lampada2.ligar();
         lampada2.desligar();
 
         if(lampada2.verEstado()){
@@ -64,8 +62,8 @@ public class App {
         retangulo.setLargura(5);
         retangulo.setAltura(4);
 
-        System.out.println("Área: " + retangulo.getArea());
-        System.out.println("Perímetro: " + retangulo.getPerimetro());
+        System.out.println("Área: " + retangulo.getArea() + " m²");
+        System.out.println("Perímetro: " + retangulo.getPerimetro() + " m");
 
         Retangulo[] retangulos = new Retangulo[10];
 
@@ -97,13 +95,29 @@ public class App {
 
         Relogio relogio = new Relogio();
         relogio.ajustaHora((byte)14, (byte)58, (byte)32);
+
+        System.out.println("Hora atual: " + relogio.getHora());
+        for(int i = 0; i < 2; i++){
+            String s = (i + 1 > 1) ? " minutos" : " minuto";
+            System.out.println("Avançando " + (i + 1) + s + "...");
+        }
+        
         relogio.avancaMinuto();
         relogio.avancaMinuto();
-        System.out.println(relogio.hora + ":" + relogio.minuto + ":" + relogio.segundo);
 
+        System.out.println("Hora atual após avançar dois minutos: " + relogio.getHora());
 
+        System.out.println("");
+        relogio.ajustaHora((byte)23, (byte)59, (byte)59);
+        System.out.println("Hora atual: " + relogio.getHora());
+        System.out.println("Avançando 1 segundo...");
+        relogio.avancaSegundo();
+        System.out.println("Hora atual após avançar um segundo: " + relogio.getHora());
 
-
+        //Os ajustes feitos estão detalhados dentro da função horaFormatada
+        System.out.println("");
+        relogio.ajustaHora((byte)23, (byte)30, (byte)45);
+        System.out.println("Hora formatada: " + relogio.horaFormatada());
 
         
     }
