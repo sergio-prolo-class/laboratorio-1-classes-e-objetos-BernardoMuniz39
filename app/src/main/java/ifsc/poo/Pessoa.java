@@ -6,7 +6,7 @@ public class Pessoa {
 
     public void setNome(String nome){
         if(nome.equals("")){
-            System.out.println("Nome inválido");
+            System.out.println("Nome inválido!");
         }else{
             this.nome = nome;
         }

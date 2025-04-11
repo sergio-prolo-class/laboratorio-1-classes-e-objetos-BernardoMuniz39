@@ -28,8 +28,7 @@ public class App {
         }else{
             System.out.println("Lâmpada 2 está desligada"); 
         }
-
-        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
 
         System.out.println("Classe Pessoa");
         System.out.println("");
@@ -48,13 +47,14 @@ public class App {
             bruno.felizAniversario();
         }
 
-        System.out.println("Idade de Bruno: " + bruno.getIdade());
+        System.out.println("\nIdade de Bruno: " + bruno.getIdade());
         System.out.println("Idade de ALice: " + alice.getIdade());
+        System.out.println("");
 
         alice.setIdade(-44);
         bruno.setNome("");
 
-        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
         System.out.println("Classe Retângulo");
         System.out.println("");
 
@@ -64,11 +64,12 @@ public class App {
 
         System.out.println("Área: " + retangulo.getArea() + " m²");
         System.out.println("Perímetro: " + retangulo.getPerimetro() + " m");
+        System.out.println("");
 
         Retangulo[] retangulos = new Retangulo[10];
 
         Random r = new Random();
-        float razao = 0;
+        float razao = 0, maiorRazao;
         int indice = 0;
 
         for(int i =0; i<10; i++){
@@ -79,7 +80,8 @@ public class App {
             retangulo.setLargura(largura);
             retangulos[i] = retangulo;
 
-            float maiorRazao = retangulo.getArea() / retangulo.getPerimetro();
+            maiorRazao = retangulo.getArea() / retangulo.getPerimetro();
+            System.out.println("Razão do retângulo " + (i + 1) + ": " + maiorRazao);
 
             if(maiorRazao > razao){
                 indice = i;
@@ -87,9 +89,9 @@ public class App {
             }
         }
 
-        System.out.println("Maior razão foi do retângulo " + indice + ": " + razao);
+        System.out.println(String.format("\nMaior razão foi do retângulo %d: %.2f\n", indice + 1, razao));
 
-        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
         System.out.println("Classe Relógio");
         System.out.println("");
 
@@ -118,6 +120,7 @@ public class App {
         System.out.println("");
         relogio.ajustaHora((byte)23, (byte)30, (byte)45);
         System.out.println("Hora formatada: " + relogio.horaFormatada());
+        System.out.println("");
 
         
     }
