@@ -122,6 +122,30 @@ public class App {
         System.out.println("Hora formatada: " + relogio.horaFormatada());
         System.out.println("");
 
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
+        System.out.println("Classe Produto");
+        System.out.println("");
+
+        Produto geladeira = new Produto();
+        Produto microondas = new Produto();
+
+        geladeira.setNome("Geladeira");
+
+        geladeira.setPreco(832);
+        microondas.setPreco(499);
+        System.out.println("Preço da geladeira: R$ " + geladeira.getPreco());
+        System.out.println("Preço do microondas: R$ " + microondas.getPreco());
+
+        geladeira.setDesconto(6);
+        microondas.setDesconto(12);
+        System.out.println("Preço da geladeira com desconto: R$ " + geladeira.getPreco());
+        System.out.println("Preço do microondas com desconto: R$ " + microondas.getPreco());
+        
+        System.out.println(geladeira.anuncio());
+
+
+        //A alteração que eu faria seria mudar o tipo de atributo preço para um float, para evitar fazer conversões desnecessárias
+
         
     }
 }

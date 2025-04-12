@@ -71,3 +71,19 @@ Abaixo está a descrição de cada método do classe relógio:
 Dentro do arquivo **App.java** foi criado um relógio, atribuido um horário, avançado os segundos, minutos e mostrado o horário formatado.
 
 Um relógio possui os atributos de hora, minuto e segundo.
+
+### Classe 5 - Produto
+A classe produto cria um novo produto, podendo atribuir um preço, um nome, um desconto e fazer um anúncio promocional.
+
+Abaixo está a descrição de cada método do classe produto:
+- setNome(): Nomeia um produto;
+- getNome(): Retorna um nome de um produto;
+- setPreco(): Atribui um preço a um produto;
+- setDesconto(): Atribui um desconto a um produto;
+- getDesconto(): Retorna o desconto de um produto;
+- anuncio(): Faz o anúncio de um produto em promoção com o valor de desconto atribuído.
+
+Dentro do arquivo **App.java** foi criado um produto, atribuído preço, desconto e feito o anúncio do produto;
+
+Um produto possui os atributos de nome, preço e desconto.
+
