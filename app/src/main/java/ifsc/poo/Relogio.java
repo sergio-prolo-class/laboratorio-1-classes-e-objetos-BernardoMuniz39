@@ -34,6 +34,7 @@ public class Relogio{
         
     }
 
+    //O typecasting aqui é feito para apresentar o horário no formato 00 (int) e não 0.0 no formato de float
     public String getHora(){
         return String.format("%02d:%02d:%02d", (int) this.hora, (int) this.minuto, (int) this.segundo);
     }

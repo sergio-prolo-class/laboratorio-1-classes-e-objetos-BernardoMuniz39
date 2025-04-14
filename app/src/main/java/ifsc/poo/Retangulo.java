@@ -5,11 +5,19 @@ public class Retangulo {
     private float altura;
 
     public void setLargura(float largura){
-        this.largura = largura;
+        if(largura < 0 ){
+            System.out.println("Largura inválida!");
+        }else{
+            this.largura = largura;
+        }
     }
 
     public void setAltura(float altura){
-        this.altura = altura;
+        if(altura < 0){
+            System.out.println("Altura inválida!");
+        }else{
+            this.altura = altura;
+        }
     }
 
     public float getArea(){
