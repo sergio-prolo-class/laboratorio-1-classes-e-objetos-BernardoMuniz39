@@ -87,3 +87,24 @@ Dentro do arquivo **App.java** foi criado um produto, atribuído preço, descont
 
 Um produto possui os atributos de nome, preço e desconto.
 
+### Classe 6 - Livro
+A classe livro permite a criação de um novo livro, podendo atribuir um autor, um título, os nomes de capítulos, genêro literário e atribuir as páginas de cada capítulo.
+
+Abaixo está a descrição de cada método da classe livro:
+- setTitulo(): Permite a atribuição de um título a um livro; 
+- getTitulo(): Permite verificar qual o título do livro;
+- setAutor(): Permite atribuir um autor a um livro;
+- getAutor(): Permite verificar qual o autor do livro;
+- setGeneros(): Permite atribuir até 2 gêneros a um livro;
+- getGeneros(): Permite verificar quais são os gêneros do livro;
+- setTotPaginas(): Permite atribuir o total de páginas do livro;
+- getTotPaginas(): Permite verificar qual é o total de páginas do livro;
+- lerpaginas(): Permite avançar a leitura das páginas de um livro;
+- getPagLidas(): Permite verificar quantas páginas até o momento de um livro;
+- setCapitulos(): Permite inicializar os capítulos de um livro;
+- setMudancaDeCapitulos(): Permite atribuir as páginas aonde os capítulos mudam;
+- getCapitulo(): Permite verificar qual é o capítulo de leitura atual através da quantidade de páginas lidas.
+
+Dentro do arquivo **App.java** foi criado um livro, atribuido título, autor, gênero literário, quantidade de páginas, capítulos e quantidade de páginas de cada capítulo. Além disso foi lido páginas e verificado qual o capítulo atual de acordo com a quantidade lida.
+
+Um livro possui os atributos de titulo, autor, gênero, capítulos, quantidade total de páginas, páginas lidas e quantidade de páginas de cada capítulo.

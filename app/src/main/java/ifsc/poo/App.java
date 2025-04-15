@@ -145,7 +145,87 @@ public class App {
 
 
         //A alteração que eu faria seria mudar o tipo de atributo preço para um float, para evitar fazer conversões desnecessárias
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
 
+        System.out.println("Classe Livro");
+        System.out.println("");
+       Livro livro = new Livro();
+
+       livro.setTitulo("O Senhor dos Anéis - A Sociedade do Anel");
+       livro.setAutor(" J. R. R. Tolkien");
+       livro.setGeneros("Fantasia");
+       livro.setGeneros("Aventura");
+       livro.setTotPaginas(464);
+
+       System.out.println("Título: " + livro.getTitulo());
+       System.out.println("Autor: " + livro.getAutor());
+       System.out.println("Gênero(s): " + livro.getGeneros());
+       System.out.println("Páginas: " + livro.getTotPaginas() + "\n");
         
+       String[] capitulos = {
+        "Uma Festa Muito Esperada",
+        "A Sombra do Passado",
+        "Três é Demais",
+        "Um Atalho para Cogumelos",
+        "Uma Conspiração Desmascarada",
+        "A Floresta Velha",
+        "Em Casa de Tom Bombadil",
+        "Névoa nas Colinas dos Túmulos",
+        "No Pônei Empinado",
+        "Passolargo",
+        "Um Faca na Noite",
+        "Voo para o Vau",
+        "Muitos Encontros",
+        "O Conselho de Elrond",
+        "O Anel Vai para o Sul",
+        "Uma Jornada no Escuro",
+        "A Ponte de Khazad-dûm",
+        "Lothlórien",
+        "O Espelho de Galadriel",
+        "Adeus a Lórien",
+        "O Grande Rio",
+        "A Partida da Sociedade"
+    };
+
+    int mudancaDePaginas[] = {
+        1,
+        23,
+        44,
+        66,
+        89,
+        110,
+        131,
+        154,
+        176,
+        197,
+        219,
+        240,
+        261,
+        282,
+        301,
+        320,
+        341,
+        361,
+        383,
+        403,
+        423,
+        446,
+    };
+
+    livro.setCapitulos(capitulos);
+    livro.setMudancaDeCapitulos(mudancaDePaginas);
+
+
+    System.out.println("Lendo 90 páginas do livro...");
+    livro.lerpaginas(90);
+    System.out.println("Capítulo atual após ler 90 páginas: " + livro.getCapitulo());
+    System.out.println("Lendo mais 300 páginas do livro...");
+    livro.lerpaginas(300);
+    System.out.println("Capítulo atual após ler mais 300 páginas: " + livro.getCapitulo());
+    System.out.println("Lendo mais 100 páginas do livro...");
+    livro.lerpaginas(100);
+
     }
 }
+        
+    
