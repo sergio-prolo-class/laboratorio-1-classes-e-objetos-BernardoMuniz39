@@ -3,12 +3,12 @@
 ## Engenharia de Telecomunicações - Programação Orientada a Objetos 
 ### Bernardo Souza Muniz - Laboratório 1
 
-Esse repositório tem o objeitvo de mostrar a resolução dos exercícios proposto no laboratório 1 da disciplina de Programação Orientada a Objetos.
+Este repositório tem o objeitvo de mostrar a resolução dos exercícios proposto no laboratório 1 da disciplina de Programação Orientada a Objetos.
 
 ### Como usar o repositório:
 Para clonar o repositório para a sua máquina local utilizando Git, basta executar o seguinte comando no seu terminal:
 
-`https://github.com/sergio-prolo-class/laboratorio-1-classes-e-objetos-BernardoMuniz39`
+`git clone https://github.com/sergio-prolo-class/laboratorio-1-classes-e-objetos-BernardoMuniz39`
 
 ### Sobre os exercícios
 O repositório contem a elaboração de classes em Java. Todas as demonstrações de funcinalidades estão instanciadas dentro do arquivo **App.java** separados por uma linha demarcadora.
