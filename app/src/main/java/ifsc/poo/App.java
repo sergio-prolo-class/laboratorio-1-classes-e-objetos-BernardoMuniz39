@@ -3,12 +3,273 @@
  */
 package ifsc.poo;
 
+import java.util.Random;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+
+        System.out.println("Classe Lâmpada");
+        System.out.println("");
+        Lampada lampada1 = new Lampada();
+        Lampada lampada2 = new Lampada();
+
+        lampada1.ligar();
+        if(lampada1.verEstado()){
+            System.out.println("Lâmpada 1 está ligada");
+        }else{
+            System.out.println("Lâmpada 1 está desligada"); 
+        }
+
+        lampada2.desligar();
+
+        if(lampada2.verEstado()){
+            System.out.println("Lâmpada 2 está ligada");
+        }else{
+            System.out.println("Lâmpada 2 está desligada"); 
+        }
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
+
+        System.out.println("Classe Pessoa");
+        System.out.println("");
+
+
+        Pessoa alice = new Pessoa("");
+        Pessoa bruno = new Pessoa("");
+
+
+        alice.setIdade(22);
+        bruno.setIdade(25);
+        alice.setNome("Alice");
+        bruno.setNome("Bruno");
+
+        for(int i = 0; i < 3; i++){
+            bruno.felizAniversario();
+        }
+
+        System.out.println("\nIdade de Bruno: " + bruno.getIdade());
+        System.out.println("Idade de ALice: " + alice.getIdade());
+        System.out.println("");
+
+        alice.setIdade(-44);
+        bruno.setNome("");
+
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
+        System.out.println("Classe Retângulo");
+        System.out.println("");
+
+        Retangulo retangulo = new Retangulo(5 ,4);
+    
+        System.out.println("Área: " + retangulo.getArea() + " m²");
+        System.out.println("Perímetro: " + retangulo.getPerimetro() + " m");
+        System.out.println("");
+
+        Retangulo[] retangulos = new Retangulo[10];
+
+        Random r = new Random();
+        float razao = 0, maiorRazao;
+        int indice = 0;
+
+        for(int i =0; i<10; i++){
+            float altura = r.nextFloat(10);
+            float largura = r.nextFloat(10);
+
+            retangulo.setAltura(altura);
+            retangulo.setLargura(largura);
+            retangulos[i] = retangulo;
+
+            maiorRazao = retangulo.getArea() / retangulo.getPerimetro();
+            System.out.println("Razão do retângulo " + (i + 1) + ": " + maiorRazao);
+
+            if(maiorRazao > razao){
+                indice = i;
+                razao = maiorRazao;
+            }
+        }
+
+        System.out.println(String.format("\nMaior razão foi do retângulo %d: %.2f\n", indice + 1, razao));
+
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
+        System.out.println("Classe Relógio");
+        System.out.println("");
+
+        Relogio relogio = new Relogio();
+        relogio.ajustaHora((byte)14, (byte)58, (byte)32);
+
+        System.out.println("Hora atual: " + relogio.getHora());
+        for(int i = 0; i < 2; i++){
+            String s = (i + 1 > 1) ? " minutos" : " minuto";
+            System.out.println("Avançando " + (i + 1) + s + "...");
+        }
+        
+        relogio.avancaMinuto();
+        relogio.avancaMinuto();
+
+        System.out.println("Hora atual após avançar dois minutos: " + relogio.getHora());
+
+        System.out.println("");
+        relogio.ajustaHora((byte)23, (byte)59, (byte)59);
+        System.out.println("Hora atual: " + relogio.getHora());
+        System.out.println("Avançando 1 segundo...");
+        relogio.avancaSegundo();
+        System.out.println("Hora atual após avançar um segundo: " + relogio.getHora());
+
+        //Os ajustes feitos estão detalhados dentro da função horaFormatada
+        System.out.println("");
+        relogio.ajustaHora((byte)23, (byte)30, (byte)45);
+        System.out.println("Hora formatada: " + relogio.horaFormatada());
+        System.out.println("");
+
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
+        System.out.println("Classe Produto");
+        System.out.println("");
+
+        Produto geladeira = new Produto();
+        Produto microondas = new Produto();
+
+        geladeira.setNome("Geladeira");
+
+        geladeira.setPreco(832);
+        microondas.setPreco(499);
+        System.out.println("Preço da geladeira: R$ " + geladeira.getPreco());
+        System.out.println("Preço do microondas: R$ " + microondas.getPreco());
+
+        geladeira.setDesconto(6);
+        microondas.setDesconto(12);
+        System.out.println("Preço da geladeira com desconto: R$ " + geladeira.getPreco());
+        System.out.println("Preço do microondas com desconto: R$ " + microondas.getPreco());
+        
+        System.out.println(geladeira.anuncio());
+
+
+        //A alteração que eu faria seria mudar o tipo de atributo preço para um float, para evitar fazer conversões desnecessárias
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
+
+        System.out.println("Classe Livro");
+        System.out.println("");
+       Livro livro = new Livro();
+
+       livro.setTitulo("O Senhor dos Anéis - A Sociedade do Anel");
+       livro.setAutor(" J. R. R. Tolkien");
+       livro.setGeneros("Fantasia");
+       livro.setGeneros("Aventura");
+       livro.setTotPaginas(464);
+
+       System.out.println("Título: " + livro.getTitulo());
+       System.out.println("Autor: " + livro.getAutor());
+       System.out.println("Gênero(s): " + livro.getGeneros());
+       System.out.println("Páginas: " + livro.getTotPaginas() + "\n");
+        
+       String[] capitulos = {
+        "Uma Festa Muito Esperada",
+        "A Sombra do Passado",
+        "Três é Demais",
+        "Um Atalho para Cogumelos",
+        "Uma Conspiração Desmascarada",
+        "A Floresta Velha",
+        "Em Casa de Tom Bombadil",
+        "Névoa nas Colinas dos Túmulos",
+        "No Pônei Empinado",
+        "Passolargo",
+        "Um Faca na Noite",
+        "Voo para o Vau",
+        "Muitos Encontros",
+        "O Conselho de Elrond",
+        "O Anel Vai para o Sul",
+        "Uma Jornada no Escuro",
+        "A Ponte de Khazad-dûm",
+        "Lothlórien",
+        "O Espelho de Galadriel",
+        "Adeus a Lórien",
+        "O Grande Rio",
+        "A Partida da Sociedade"
+    };
+
+    int mudancaDePaginas[] = {
+        1,
+        23,
+        44,
+        66,
+        89,
+        110,
+        131,
+        154,
+        176,
+        197,
+        219,
+        240,
+        261,
+        282,
+        301,
+        320,
+        341,
+        361,
+        383,
+        403,
+        423,
+        446,
+    };
+
+    livro.setCapitulos(capitulos);
+    livro.setMudancaDeCapitulos(mudancaDePaginas);
+
+
+    System.out.println("Lendo 90 páginas do livro...");
+    livro.lerpaginas(90);
+    System.out.println("Capítulo atual após ler 90 páginas: " + livro.getCapitulo());
+    System.out.println("Lendo mais 300 páginas do livro...");
+    livro.lerpaginas(300);
+    System.out.println("Capítulo atual após ler mais 300 páginas: " + livro.getCapitulo());
+    System.out.println("Lendo mais 100 páginas do livro...");
+    livro.lerpaginas(100);
+
+
+
+    System.out.println("-------------------------------------------------------------------------------------------------------------");
+
+    System.out.println("Lâmpada - Laboratório 2");
+
+    Lampada lampada3 = new Lampada(true);
+    Lampada lampada4 = new Lampada();
+
+    System.out.println("Estado da lâmpada 3: " + lampada3.verEstado());
+    System.out.println("Estado da lâmpada 4: " + lampada4.verEstado());
+
+    System.out.println("Quantiadade de lâmpadas criadas: " + lampada3.getTotal());
+
+    System.out.println("-------------------------------------------------------------------------------------------------------------");
+
+    System.out.println("Pessoa - Laboratório 2");
+    Pessoa pessoa = new Pessoa("606.927.380-02");
+    Pessoa pessoa2 = new Pessoa("567.506.810-42", "Bernardo");
+    Pessoa pessoa3 = new Pessoa("", "Manuela", 18);
+    pessoa.setNome("Guilherme");
+    pessoa.setIdade(32);
+    pessoa2.setIdade(19);
+
+    System.out.println("Pessoa 1: " + "Nome: " + pessoa.getNome() + " CPF: " + pessoa.getCpf() + " Idade: " + pessoa.getIdade());
+    System.out.println("Pessoa 2: " + "Nome: " + pessoa2.getNome() + " CPF: " + pessoa2.getCpf() + " Idade: " + pessoa2.getIdade());
+    System.out.println("Pessoa 3: " + "Nome: " + pessoa3.getNome() + " CPF: " + pessoa3.getCpf() + " Idade: " + pessoa3.getIdade());
+
+    System.out.println("-------------------------------------------------------------------------------------------------------------");
+
+    System.out.println("Retangulo - Laboratório 2");
+    Retangulo retangulo1 = new Retangulo(8, 6);
+    Retangulo retangulo2 = new Retangulo(9, 10);
+    Retangulo retangulo3 = new Retangulo(2, 1);
+
+
+    System.out.println("Perímetro retângulo 1: " + retangulo1.getPerimetro());
+    System.out.println("Perímetro retângulo 2: " + retangulo2.getPerimetro());
+    System.out.println("Perímetro retângulo 3: " + retangulo3.getPerimetro());
+
+    System.out.println("Área retângulo 1: " + retangulo1.getArea());
+    System.out.println("Área retângulo 2: " + retangulo2.getArea());
+    System.out.println("Área retângulo 3: " + retangulo3.getArea());
+
+    System.out.println("Retângulo de maior área: " + Retangulo.getRetanguloMaiorArea().getArea());
+    System.out.println("Retângulo de maior perímetro: " + Retangulo.getRetanguloMaiorPerimetro().getPerimetro());
     }
 }
+        
+    
