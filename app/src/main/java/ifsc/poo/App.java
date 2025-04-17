@@ -34,8 +34,8 @@ public class App {
         System.out.println("");
 
 
-        Pessoa alice = new Pessoa();
-        Pessoa bruno = new Pessoa();
+        Pessoa alice = new Pessoa("");
+        Pessoa bruno = new Pessoa("");
 
 
         alice.setIdade(22);
@@ -58,10 +58,8 @@ public class App {
         System.out.println("Classe Retângulo");
         System.out.println("");
 
-        Retangulo retangulo = new Retangulo();
-        retangulo.setLargura(5);
-        retangulo.setAltura(4);
-
+        Retangulo retangulo = new Retangulo(5 ,4);
+    
         System.out.println("Área: " + retangulo.getArea() + " m²");
         System.out.println("Perímetro: " + retangulo.getPerimetro() + " m");
         System.out.println("");
@@ -225,6 +223,52 @@ public class App {
     System.out.println("Lendo mais 100 páginas do livro...");
     livro.lerpaginas(100);
 
+
+
+    System.out.println("-------------------------------------------------------------------------------------------------------------");
+
+    System.out.println("Lâmpada - Laboratório 2");
+
+    Lampada lampada3 = new Lampada(true);
+    Lampada lampada4 = new Lampada();
+
+    System.out.println("Estado da lâmpada 3: " + lampada3.verEstado());
+    System.out.println("Estado da lâmpada 4: " + lampada4.verEstado());
+
+    System.out.println("Quantiadade de lâmpadas criadas: " + lampada3.getTotal());
+
+    System.out.println("-------------------------------------------------------------------------------------------------------------");
+
+    System.out.println("Pessoa - Laboratório 2");
+    Pessoa pessoa = new Pessoa("606.927.380-02");
+    Pessoa pessoa2 = new Pessoa("567.506.810-42", "Bernardo");
+    Pessoa pessoa3 = new Pessoa("", "Manuela", 18);
+    pessoa.setNome("Guilherme");
+    pessoa.setIdade(32);
+    pessoa2.setIdade(19);
+
+    System.out.println("Pessoa 1: " + "Nome: " + pessoa.getNome() + " CPF: " + pessoa.getCpf() + " Idade: " + pessoa.getIdade());
+    System.out.println("Pessoa 2: " + "Nome: " + pessoa2.getNome() + " CPF: " + pessoa2.getCpf() + " Idade: " + pessoa2.getIdade());
+    System.out.println("Pessoa 3: " + "Nome: " + pessoa3.getNome() + " CPF: " + pessoa3.getCpf() + " Idade: " + pessoa3.getIdade());
+
+    System.out.println("-------------------------------------------------------------------------------------------------------------");
+
+    System.out.println("Retangulo - Laboratório 2");
+    Retangulo retangulo1 = new Retangulo(8, 6);
+    Retangulo retangulo2 = new Retangulo(9, 10);
+    Retangulo retangulo3 = new Retangulo(2, 1);
+
+
+    System.out.println("Perímetro retângulo 1: " + retangulo1.getPerimetro());
+    System.out.println("Perímetro retângulo 2: " + retangulo2.getPerimetro());
+    System.out.println("Perímetro retângulo 3: " + retangulo3.getPerimetro());
+
+    System.out.println("Área retângulo 1: " + retangulo1.getArea());
+    System.out.println("Área retângulo 2: " + retangulo2.getArea());
+    System.out.println("Área retângulo 3: " + retangulo3.getArea());
+
+    System.out.println("Retângulo de maior área: " + Retangulo.getRetanguloMaiorArea().getArea());
+    System.out.println("Retângulo de maior perímetro: " + Retangulo.getRetanguloMaiorPerimetro().getPerimetro());
     }
 }
         

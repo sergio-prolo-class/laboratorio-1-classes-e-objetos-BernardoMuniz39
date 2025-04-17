@@ -1,18 +1,33 @@
 package ifsc.poo;
 
 public class Lampada {
-    private boolean ligada;
+    private boolean estado;
+    private static int qtd;
+
+    public Lampada(boolean estado){
+        this.estado = estado;
+        qtd++;
+    }
+
+    public Lampada(){
+        qtd++;
+        this.estado = false;
+    }
+
+    public int getTotal(){
+        return qtd;
+    }
 
     public void ligar(){
-        this.ligada = true;
+        this.estado = true;
     }
 
     public void desligar(){
-        this.ligada = false;
+        this.estado = false;
     }
 
     public boolean verEstado(){
-        return this.ligada;
+        return this.estado;
     }
 
     
