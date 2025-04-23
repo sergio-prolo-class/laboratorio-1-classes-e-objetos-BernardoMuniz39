@@ -10,3 +10,6 @@ build
 
 # Ignore vscode configs
 .vscode
+
+*.iml
+*.class
