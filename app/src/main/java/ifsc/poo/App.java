@@ -5,7 +5,70 @@ package ifsc.poo;
 
 import java.util.Random;
 
+
 public class App {
+
+
+
+    static boolean posicaoValida(int linha, int coluna, boolean  direcao, int qtdNavio, String [][] tabuleiro){
+            if(direcao){ 
+                if(coluna + qtdNavio > 10){ 
+                    return false;
+                }
+
+                
+                for(int i = 0; i < qtdNavio; i++){
+                    if(!tabuleiro[linha][coluna ++].equals(" .")){
+                        return false; 
+                    }
+                }
+            }else{ 
+                if(linha + qtdNavio > 10){ 
+                    return false;
+                }
+               
+                for(int i = 0; i < qtdNavio; i++){
+                    if(!tabuleiro[linha++][coluna].equals(" .")){
+                        return false;
+                    }
+                }
+            }
+            return true; 
+    }
+
+
+    static void insereNavio(int qtdNavio, int linha, int coluna, String [] [] tabuleiro, String caracter, boolean direcao){
+        if(direcao){ 
+            for(int i = 0; i < qtdNavio; i++){
+                tabuleiro[linha][coluna++] = caracter;
+            }
+        }else{ 
+            for(int k = 0; k < qtdNavio; k++){
+                tabuleiro[linha++][coluna] = caracter;
+            }
+        }
+    }
+
+
+    static void solve(int qtdNavio, String [] [] tabuleiro, String caracter){
+        int qtdcolocada = 0, colunas, linhas;
+        boolean VH;
+        Random r = new Random(); //sorteador
+
+
+        while(qtdcolocada < qtdNavio){
+            colunas = r.nextInt(10); //sorteia um numero de 0 até 10 para as colunas
+            linhas = r.nextInt(10); //sortei um numero de 0 até 10 para as linhas
+            VH = r.nextBoolean(); //sortei se a proxíma posição a ser colocada vai ser na horizontal ou vertical (0 = horizontal, 1= vertical)
+            
+            if(posicaoValida(linhas, colunas, VH, qtdNavio, tabuleiro)){
+                insereNavio(qtdNavio, linhas, colunas, tabuleiro, caracter, VH);
+                qtdcolocada = qtdNavio;
+            }
+            
+        }
+    
+    }
 
     public static void main(String[] args) {
 
@@ -292,6 +355,50 @@ public class App {
         if(s == null)continue;
         System.out.println(s);
     }
+
+    System.out.println("-------------------------------------------------------------------------------------------------------------");
+
+    System.out.println("Classe Navio - Laboratorio 2");
+    System.out.println("");
+
+    Navio navio = new Navio();
+    String [][] tabuleiro = new String[10][10];
+
+    for(int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){
+            tabuleiro[i][j] = " .";
+        }
+    }
+
+    navio.setTamanho(5);
+    navio.setNomenclatura(" N");
+
+    solve(navio.getTamanho(),  tabuleiro, navio.getNomenclatura());
+ 
+    for(int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){
+            System.out.print(tabuleiro[i][j]);
+        }
+        System.out.println("");
+    }
+
+    System.out.print("\nPosições encontradas do navio" + navio.getNomenclatura() + ": " + navio.getPosicoes(tabuleiro) + "\n");
+    System.out.println("Orientação do navio" + navio.getNomenclatura() + ": " + navio.getOrientacao(tabuleiro));
+    
+    Random p = new Random();
+
+    while(navio.getTamanho() != 0){
+        int sortlinha = p.nextInt(10);
+        int sortColuna = p.nextInt(10);
+        System.out.println("Posição a ser bombardeada: (" + sortlinha + "," + sortColuna + ")");
+        if(navio.bombardear(sortlinha, sortColuna, tabuleiro)){
+            System.out.println("Navio atingido!");
+        }
+    }
+    
+    
+    
+
 
     }
 }
