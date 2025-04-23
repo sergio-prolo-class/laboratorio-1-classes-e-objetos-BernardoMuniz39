@@ -3,6 +3,34 @@ package ifsc.poo;
 public class Relogio{
     byte hora, minuto, segundo;
 
+    public Relogio(byte hora){
+        this.hora = hora;   
+        this.minuto = 0;
+        this.segundo = 0;
+    }
+
+    public Relogio(byte hora, byte minuto){
+        this.hora = hora;
+        this.minuto = minuto;
+        this.segundo = 0;
+    }
+
+    public Relogio(byte hora, byte minuto, byte segundo){
+        this.hora = hora;
+        this.minuto = minuto;
+        this.segundo = segundo;
+    }
+
+    static void sincronizaRelogio(Relogio relogio1, Relogio relogio2){
+        relogio1.hora = relogio2.hora;
+        relogio1.minuto = relogio2.minuto;
+        relogio1.segundo = relogio2.segundo;
+    }
+
+    static String difClocks(Relogio relogio1, Relogio relogio2){
+        return String.format("Hora(s): %02d, minuto(s): %02d, segundo(s): %02d", (int) relogio1.hora - relogio2.hora, (int) relogio1.minuto - relogio2.minuto, (int) relogio1.segundo - relogio2.segundo);
+    }
+
     public void ajustaHora(byte hora, byte minuto, byte segundo){
         this.hora = hora;
         this.minuto = minuto;
@@ -15,6 +43,8 @@ public class Relogio{
             this.hora = 0;
         }
     }
+
+    
 
     public void avancaMinuto(){
         this.minuto++;

@@ -93,8 +93,7 @@ public class App {
         System.out.println("Classe Relógio");
         System.out.println("");
 
-        Relogio relogio = new Relogio();
-        relogio.ajustaHora((byte)14, (byte)58, (byte)32);
+        Relogio relogio = new Relogio((byte)14, (byte)58, (byte)32);
 
         System.out.println("Hora atual: " + relogio.getHora());
         for(int i = 0; i < 2; i++){
@@ -124,13 +123,9 @@ public class App {
         System.out.println("Classe Produto");
         System.out.println("");
 
-        Produto geladeira = new Produto();
-        Produto microondas = new Produto();
+        Produto geladeira = new Produto("Geladeira", 832, 0);
+        Produto microondas = new Produto("Microondas", 499, 0);
 
-        geladeira.setNome("Geladeira");
-
-        geladeira.setPreco(832);
-        microondas.setPreco(499);
         System.out.println("Preço da geladeira: R$ " + geladeira.getPreco());
         System.out.println("Preço do microondas: R$ " + microondas.getPreco());
 
@@ -239,7 +234,7 @@ public class App {
 
     System.out.println("-------------------------------------------------------------------------------------------------------------");
 
-    System.out.println("Pessoa - Laboratório 2");
+    System.out.println("Pessoa - Laboratório 2\n");
     Pessoa pessoa = new Pessoa("606.927.380-02");
     Pessoa pessoa2 = new Pessoa("567.506.810-42", "Bernardo");
     Pessoa pessoa3 = new Pessoa("", "Manuela", 18);
@@ -253,7 +248,7 @@ public class App {
 
     System.out.println("-------------------------------------------------------------------------------------------------------------");
 
-    System.out.println("Retangulo - Laboratório 2");
+    System.out.println("Retângulo - Laboratório 2\n");
     Retangulo retangulo1 = new Retangulo(8, 6);
     Retangulo retangulo2 = new Retangulo(9, 10);
     Retangulo retangulo3 = new Retangulo(2, 1);
@@ -267,8 +262,37 @@ public class App {
     System.out.println("Área retângulo 2: " + retangulo2.getArea());
     System.out.println("Área retângulo 3: " + retangulo3.getArea());
 
-    System.out.println("Retângulo de maior área: " + Retangulo.getRetanguloMaiorArea().getArea());
-    System.out.println("Retângulo de maior perímetro: " + Retangulo.getRetanguloMaiorPerimetro().getPerimetro());
+    System.out.println("\nRetângulo de maior área: " + Retangulo.getRetanguloMaiorArea() + " com área de " + Retangulo.getRetanguloMaiorArea().getArea() + " m².");
+    System.out.println("Retângulo de maior perímetro: " + Retangulo.getRetanguloMaiorPerimetro() + " com perímetro de " + Retangulo.getRetanguloMaiorPerimetro().getPerimetro() + " m.");
+
+
+    System.out.println("-------------------------------------------------------------------------------------------------------------");
+
+    System.out.println("\nRelógio - Laboratorio 2");
+
+    Relogio relogio1 = new Relogio((byte)14, (byte)4, (byte)16);
+    Relogio relogio2 = new Relogio((byte)7, (byte)2, (byte)8);
+
+    System.out.println("Horário autal do relógio 1: " + relogio1.getHora());
+    System.out.println("Horário autal do relógio 2: " +relogio2.getHora());
+
+    System.out.println("Diferença de horas, minutos e segundos dos dois relógios: " + Relogio.difClocks(relogio1, relogio2));
+    Relogio.sincronizaRelogio(relogio1, relogio2);
+
+    System.out.println("Horários do relógio 1 e 2 após a sincronização: " + relogio1.getHora() + " / " +  relogio2.getHora());
+
+    System.out.println("-------------------------------------------------------------------------------------------------------------");
+
+    System.out.println("Classe Produto - Laboratorio 2");
+    System.out.println("");
+
+    Produto fogao = new Produto("Fogão 4 bocas Eletrolux KL4003", 677, 0);
+    
+    for (String s : Produto.register) {
+        if(s == null)continue;
+        System.out.println(s);
+    }
+
     }
 }
         

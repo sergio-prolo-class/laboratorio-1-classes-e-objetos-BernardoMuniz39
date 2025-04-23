@@ -3,7 +3,7 @@ package ifsc.poo;
 public class Retangulo {
     private float largura;
     private float altura;
-    private float maiorArea = 0, maiorPerimetro  = 0;
+    private static float maiorArea = 0, maiorPerimetro  = 0;
     private static Retangulo RetanguloArea, RetanguloPerimetro; 
 
     public Retangulo(float largura, float altura){
