@@ -1,7 +1,7 @@
 package ifsc.poo;
 
 public class Navio {
-    private int tamanho, linha, coluna;
+    private int tamanho;
     private String nomenclatura;
     private String posicoesEncontradas = "", posicoesAtingidas = "";
 

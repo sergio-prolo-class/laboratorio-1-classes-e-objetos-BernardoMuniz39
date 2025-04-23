@@ -5,69 +5,75 @@ package ifsc.poo;
 
 import java.util.Random;
 
-
 public class App {
 
+    static boolean validaBombas(String s, String [] posicoesBombardeadas){
 
-
-    static boolean posicaoValida(int linha, int coluna, boolean  direcao, int qtdNavio, String [][] tabuleiro){
-            if(direcao){ 
-                if(coluna + qtdNavio > 10){ 
-                    return false;
-                }
-
-                
-                for(int i = 0; i < qtdNavio; i++){
-                    if(!tabuleiro[linha][coluna ++].equals(" .")){
-                        return false; 
-                    }
-                }
-            }else{ 
-                if(linha + qtdNavio > 10){ 
-                    return false;
-                }
-               
-                for(int i = 0; i < qtdNavio; i++){
-                    if(!tabuleiro[linha++][coluna].equals(" .")){
-                        return false;
-                    }
-                }
+        for(int i = 0; i < posicoesBombardeadas.length; i++){
+            if(posicoesBombardeadas[i] == null) continue;
+            if(posicoesBombardeadas[i].equals(s)){
+                return true; //Nesse caso a posição sorteada ja foi anteriormente sorteada, pois está dentro do array
             }
-            return true; 
+        }
+        return false;
     }
 
+    static boolean posicaoValida(int linha, int coluna, boolean direcao, int qtdNavio, String[][] tabuleiro) {
+        if (direcao) {
+            if (coluna + qtdNavio > 10) {
+                return false;
+            }
 
-    static void insereNavio(int qtdNavio, int linha, int coluna, String [] [] tabuleiro, String caracter, boolean direcao){
-        if(direcao){ 
-            for(int i = 0; i < qtdNavio; i++){
+            for (int i = 0; i < qtdNavio; i++) {
+                if (!tabuleiro[linha][coluna++].equals(" .")) {
+                    return false;
+                }
+            }
+        } else {
+            if (linha + qtdNavio > 10) {
+                return false;
+            }
+
+            for (int i = 0; i < qtdNavio; i++) {
+                if (!tabuleiro[linha++][coluna].equals(" .")) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    static void insereNavio(int qtdNavio, int linha, int coluna, String[][] tabuleiro, String caracter,
+            boolean direcao) {
+        if (direcao) {
+            for (int i = 0; i < qtdNavio; i++) {
                 tabuleiro[linha][coluna++] = caracter;
             }
-        }else{ 
-            for(int k = 0; k < qtdNavio; k++){
+        } else {
+            for (int k = 0; k < qtdNavio; k++) {
                 tabuleiro[linha++][coluna] = caracter;
             }
         }
     }
 
-
-    static void solve(int qtdNavio, String [] [] tabuleiro, String caracter){
+    static void solve(int qtdNavio, String[][] tabuleiro, String caracter) {
         int qtdcolocada = 0, colunas, linhas;
         boolean VH;
-        Random r = new Random(); //sorteador
+        Random r = new Random(); // sorteador
 
+        while (qtdcolocada < qtdNavio) {
+            colunas = r.nextInt(10); // sorteia um numero de 0 até 10 para as colunas
+            linhas = r.nextInt(10); // sortei um numero de 0 até 10 para as linhas
+            VH = r.nextBoolean(); // sortei se a proxíma posição a ser colocada vai ser na horizontal ou vertical
+                                  // (0 = horizontal, 1= vertical)
 
-        while(qtdcolocada < qtdNavio){
-            colunas = r.nextInt(10); //sorteia um numero de 0 até 10 para as colunas
-            linhas = r.nextInt(10); //sortei um numero de 0 até 10 para as linhas
-            VH = r.nextBoolean(); //sortei se a proxíma posição a ser colocada vai ser na horizontal ou vertical (0 = horizontal, 1= vertical)
-            
-            if(posicaoValida(linhas, colunas, VH, qtdNavio, tabuleiro)){
+            if (posicaoValida(linhas, colunas, VH, qtdNavio, tabuleiro)) {
                 insereNavio(qtdNavio, linhas, colunas, tabuleiro, caracter, VH);
                 qtdcolocada = qtdNavio;
             }
-            
+
         }
-    
+
     }
 
     public static void main(String[] args) {
@@ -78,35 +84,34 @@ public class App {
         Lampada lampada2 = new Lampada();
 
         lampada1.ligar();
-        if(lampada1.verEstado()){
+        if (lampada1.verEstado()) {
             System.out.println("Lâmpada 1 está ligada");
-        }else{
-            System.out.println("Lâmpada 1 está desligada"); 
+        } else {
+            System.out.println("Lâmpada 1 está desligada");
         }
 
         lampada2.desligar();
 
-        if(lampada2.verEstado()){
+        if (lampada2.verEstado()) {
             System.out.println("Lâmpada 2 está ligada");
-        }else{
-            System.out.println("Lâmpada 2 está desligada"); 
+        } else {
+            System.out.println("Lâmpada 2 está desligada");
         }
-        System.out.println("-------------------------------------------------------------------------------------------------------------");
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------");
 
         System.out.println("Classe Pessoa");
         System.out.println("");
 
-
         Pessoa alice = new Pessoa("");
         Pessoa bruno = new Pessoa("");
-
 
         alice.setIdade(22);
         bruno.setIdade(25);
         alice.setNome("Alice");
         bruno.setNome("Bruno");
 
-        for(int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++) {
             bruno.felizAniversario();
         }
 
@@ -117,12 +122,13 @@ public class App {
         alice.setIdade(-44);
         bruno.setNome("");
 
-        System.out.println("-------------------------------------------------------------------------------------------------------------");
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------");
         System.out.println("Classe Retângulo");
         System.out.println("");
 
-        Retangulo retangulo = new Retangulo(5 ,4);
-    
+        Retangulo retangulo = new Retangulo(5, 4);
+
         System.out.println("Área: " + retangulo.getArea() + " m²");
         System.out.println("Perímetro: " + retangulo.getPerimetro() + " m");
         System.out.println("");
@@ -133,7 +139,7 @@ public class App {
         float razao = 0, maiorRazao;
         int indice = 0;
 
-        for(int i =0; i<10; i++){
+        for (int i = 0; i < 10; i++) {
             float altura = r.nextFloat(10);
             float largura = r.nextFloat(10);
 
@@ -144,7 +150,7 @@ public class App {
             maiorRazao = retangulo.getArea() / retangulo.getPerimetro();
             System.out.println("Razão do retângulo " + (i + 1) + ": " + maiorRazao);
 
-            if(maiorRazao > razao){
+            if (maiorRazao > razao) {
                 indice = i;
                 razao = maiorRazao;
             }
@@ -152,37 +158,39 @@ public class App {
 
         System.out.println(String.format("\nMaior razão foi do retângulo %d: %.2f\n", indice + 1, razao));
 
-        System.out.println("-------------------------------------------------------------------------------------------------------------");
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------");
         System.out.println("Classe Relógio");
         System.out.println("");
 
-        Relogio relogio = new Relogio((byte)14, (byte)58, (byte)32);
+        Relogio relogio = new Relogio((byte) 14, (byte) 58, (byte) 32);
 
         System.out.println("Hora atual: " + relogio.getHora());
-        for(int i = 0; i < 2; i++){
+        for (int i = 0; i < 2; i++) {
             String s = (i + 1 > 1) ? " minutos" : " minuto";
             System.out.println("Avançando " + (i + 1) + s + "...");
         }
-        
+
         relogio.avancaMinuto();
         relogio.avancaMinuto();
 
         System.out.println("Hora atual após avançar dois minutos: " + relogio.getHora());
 
         System.out.println("");
-        relogio.ajustaHora((byte)23, (byte)59, (byte)59);
+        relogio.ajustaHora((byte) 23, (byte) 59, (byte) 59);
         System.out.println("Hora atual: " + relogio.getHora());
         System.out.println("Avançando 1 segundo...");
         relogio.avancaSegundo();
         System.out.println("Hora atual após avançar um segundo: " + relogio.getHora());
 
-        //Os ajustes feitos estão detalhados dentro da função horaFormatada
+        // Os ajustes feitos estão detalhados dentro da função horaFormatada
         System.out.println("");
-        relogio.ajustaHora((byte)23, (byte)30, (byte)45);
+        relogio.ajustaHora((byte) 23, (byte) 30, (byte) 45);
         System.out.println("Hora formatada: " + relogio.horaFormatada());
         System.out.println("");
 
-        System.out.println("-------------------------------------------------------------------------------------------------------------");
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------");
         System.out.println("Classe Produto");
         System.out.println("");
 
@@ -196,211 +204,231 @@ public class App {
         microondas.setDesconto(12);
         System.out.println("Preço da geladeira com desconto: R$ " + geladeira.getPreco());
         System.out.println("Preço do microondas com desconto: R$ " + microondas.getPreco());
-        
+
         System.out.println(geladeira.anuncio());
 
-
-        //A alteração que eu faria seria mudar o tipo de atributo preço para um float, para evitar fazer conversões desnecessárias
-        System.out.println("-------------------------------------------------------------------------------------------------------------");
+        // A alteração que eu faria seria mudar o tipo de atributo preço para um float,
+        // para evitar fazer conversões desnecessárias
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------");
 
         System.out.println("Classe Livro");
         System.out.println("");
-       Livro livro = new Livro();
+        Livro livro = new Livro();
 
-       livro.setTitulo("O Senhor dos Anéis - A Sociedade do Anel");
-       livro.setAutor(" J. R. R. Tolkien");
-       livro.setGeneros("Fantasia");
-       livro.setGeneros("Aventura");
-       livro.setTotPaginas(464);
+        livro.setTitulo("O Senhor dos Anéis - A Sociedade do Anel");
+        livro.setAutor(" J. R. R. Tolkien");
+        livro.setGeneros("Fantasia");
+        livro.setGeneros("Aventura");
+        livro.setTotPaginas(464);
 
-       System.out.println("Título: " + livro.getTitulo());
-       System.out.println("Autor: " + livro.getAutor());
-       System.out.println("Gênero(s): " + livro.getGeneros());
-       System.out.println("Páginas: " + livro.getTotPaginas() + "\n");
-        
-       String[] capitulos = {
-        "Uma Festa Muito Esperada",
-        "A Sombra do Passado",
-        "Três é Demais",
-        "Um Atalho para Cogumelos",
-        "Uma Conspiração Desmascarada",
-        "A Floresta Velha",
-        "Em Casa de Tom Bombadil",
-        "Névoa nas Colinas dos Túmulos",
-        "No Pônei Empinado",
-        "Passolargo",
-        "Um Faca na Noite",
-        "Voo para o Vau",
-        "Muitos Encontros",
-        "O Conselho de Elrond",
-        "O Anel Vai para o Sul",
-        "Uma Jornada no Escuro",
-        "A Ponte de Khazad-dûm",
-        "Lothlórien",
-        "O Espelho de Galadriel",
-        "Adeus a Lórien",
-        "O Grande Rio",
-        "A Partida da Sociedade"
-    };
+        System.out.println("Título: " + livro.getTitulo());
+        System.out.println("Autor: " + livro.getAutor());
+        System.out.println("Gênero(s): " + livro.getGeneros());
+        System.out.println("Páginas: " + livro.getTotPaginas() + "\n");
 
-    int mudancaDePaginas[] = {
-        1,
-        23,
-        44,
-        66,
-        89,
-        110,
-        131,
-        154,
-        176,
-        197,
-        219,
-        240,
-        261,
-        282,
-        301,
-        320,
-        341,
-        361,
-        383,
-        403,
-        423,
-        446,
-    };
+        String[] capitulos = {
+                "Uma Festa Muito Esperada",
+                "A Sombra do Passado",
+                "Três é Demais",
+                "Um Atalho para Cogumelos",
+                "Uma Conspiração Desmascarada",
+                "A Floresta Velha",
+                "Em Casa de Tom Bombadil",
+                "Névoa nas Colinas dos Túmulos",
+                "No Pônei Empinado",
+                "Passolargo",
+                "Um Faca na Noite",
+                "Voo para o Vau",
+                "Muitos Encontros",
+                "O Conselho de Elrond",
+                "O Anel Vai para o Sul",
+                "Uma Jornada no Escuro",
+                "A Ponte de Khazad-dûm",
+                "Lothlórien",
+                "O Espelho de Galadriel",
+                "Adeus a Lórien",
+                "O Grande Rio",
+                "A Partida da Sociedade"
+        };
 
-    livro.setCapitulos(capitulos);
-    livro.setMudancaDeCapitulos(mudancaDePaginas);
+        int mudancaDePaginas[] = {
+                1,
+                23,
+                44,
+                66,
+                89,
+                110,
+                131,
+                154,
+                176,
+                197,
+                219,
+                240,
+                261,
+                282,
+                301,
+                320,
+                341,
+                361,
+                383,
+                403,
+                423,
+                446,
+        };
 
+        livro.setCapitulos(capitulos);
+        livro.setMudancaDeCapitulos(mudancaDePaginas);
 
-    System.out.println("Lendo 90 páginas do livro...");
-    livro.lerpaginas(90);
-    System.out.println("Capítulo atual após ler 90 páginas: " + livro.getCapitulo());
-    System.out.println("Lendo mais 300 páginas do livro...");
-    livro.lerpaginas(300);
-    System.out.println("Capítulo atual após ler mais 300 páginas: " + livro.getCapitulo());
-    System.out.println("Lendo mais 100 páginas do livro...");
-    livro.lerpaginas(100);
+        System.out.println("Lendo 90 páginas do livro...");
+        livro.lerpaginas(90);
+        System.out.println("Capítulo atual após ler 90 páginas: " + livro.getCapitulo());
+        System.out.println("Lendo mais 300 páginas do livro...");
+        livro.lerpaginas(300);
+        System.out.println("Capítulo atual após ler mais 300 páginas: " + livro.getCapitulo());
+        System.out.println("Lendo mais 100 páginas do livro...");
+        livro.lerpaginas(100);
 
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------");
 
+        System.out.println("Lâmpada - Laboratório 2");
 
-    System.out.println("-------------------------------------------------------------------------------------------------------------");
+        Lampada lampada3 = new Lampada(true);
+        Lampada lampada4 = new Lampada();
 
-    System.out.println("Lâmpada - Laboratório 2");
+        System.out.println("Estado da lâmpada 3: " + lampada3.verEstado());
+        System.out.println("Estado da lâmpada 4: " + lampada4.verEstado());
 
-    Lampada lampada3 = new Lampada(true);
-    Lampada lampada4 = new Lampada();
+        System.out.println("Quantiadade de lâmpadas criadas: " + lampada3.getTotal());
 
-    System.out.println("Estado da lâmpada 3: " + lampada3.verEstado());
-    System.out.println("Estado da lâmpada 4: " + lampada4.verEstado());
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------");
 
-    System.out.println("Quantiadade de lâmpadas criadas: " + lampada3.getTotal());
+        System.out.println("Pessoa - Laboratório 2\n");
+        Pessoa pessoa = new Pessoa("606.927.380-02");
+        Pessoa pessoa2 = new Pessoa("567.506.810-42", "Bernardo");
+        Pessoa pessoa3 = new Pessoa("", "Manuela", 18);
+        pessoa.setNome("Guilherme");
+        pessoa.setIdade(32);
+        pessoa2.setIdade(19);
 
-    System.out.println("-------------------------------------------------------------------------------------------------------------");
+        System.out.println("Pessoa 1: " + "Nome: " + pessoa.getNome() + " CPF: " + pessoa.getCpf() + " Idade: "
+                + pessoa.getIdade());
+        System.out.println("Pessoa 2: " + "Nome: " + pessoa2.getNome() + " CPF: " + pessoa2.getCpf() + " Idade: "
+                + pessoa2.getIdade());
+        System.out.println("Pessoa 3: " + "Nome: " + pessoa3.getNome() + " CPF: " + pessoa3.getCpf() + " Idade: "
+                + pessoa3.getIdade());
 
-    System.out.println("Pessoa - Laboratório 2\n");
-    Pessoa pessoa = new Pessoa("606.927.380-02");
-    Pessoa pessoa2 = new Pessoa("567.506.810-42", "Bernardo");
-    Pessoa pessoa3 = new Pessoa("", "Manuela", 18);
-    pessoa.setNome("Guilherme");
-    pessoa.setIdade(32);
-    pessoa2.setIdade(19);
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------");
 
-    System.out.println("Pessoa 1: " + "Nome: " + pessoa.getNome() + " CPF: " + pessoa.getCpf() + " Idade: " + pessoa.getIdade());
-    System.out.println("Pessoa 2: " + "Nome: " + pessoa2.getNome() + " CPF: " + pessoa2.getCpf() + " Idade: " + pessoa2.getIdade());
-    System.out.println("Pessoa 3: " + "Nome: " + pessoa3.getNome() + " CPF: " + pessoa3.getCpf() + " Idade: " + pessoa3.getIdade());
+        System.out.println("Retângulo - Laboratório 2\n");
+        Retangulo retangulo1 = new Retangulo(8, 6);
+        Retangulo retangulo2 = new Retangulo(9, 10);
+        Retangulo retangulo3 = new Retangulo(2, 1);
 
-    System.out.println("-------------------------------------------------------------------------------------------------------------");
+        System.out.println("Perímetro retângulo 1: " + retangulo1.getPerimetro());
+        System.out.println("Perímetro retângulo 2: " + retangulo2.getPerimetro());
+        System.out.println("Perímetro retângulo 3: " + retangulo3.getPerimetro());
 
-    System.out.println("Retângulo - Laboratório 2\n");
-    Retangulo retangulo1 = new Retangulo(8, 6);
-    Retangulo retangulo2 = new Retangulo(9, 10);
-    Retangulo retangulo3 = new Retangulo(2, 1);
+        System.out.println("Área retângulo 1: " + retangulo1.getArea());
+        System.out.println("Área retângulo 2: " + retangulo2.getArea());
+        System.out.println("Área retângulo 3: " + retangulo3.getArea());
 
+        System.out.println("\nRetângulo de maior área: " + Retangulo.getRetanguloMaiorArea() + " com área de "
+                + Retangulo.getRetanguloMaiorArea().getArea() + " m².");
+        System.out.println("Retângulo de maior perímetro: " + Retangulo.getRetanguloMaiorPerimetro()
+                + " com perímetro de " + Retangulo.getRetanguloMaiorPerimetro().getPerimetro() + " m.");
 
-    System.out.println("Perímetro retângulo 1: " + retangulo1.getPerimetro());
-    System.out.println("Perímetro retângulo 2: " + retangulo2.getPerimetro());
-    System.out.println("Perímetro retângulo 3: " + retangulo3.getPerimetro());
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------");
 
-    System.out.println("Área retângulo 1: " + retangulo1.getArea());
-    System.out.println("Área retângulo 2: " + retangulo2.getArea());
-    System.out.println("Área retângulo 3: " + retangulo3.getArea());
+        System.out.println("\nRelógio - Laboratorio 2");
 
-    System.out.println("\nRetângulo de maior área: " + Retangulo.getRetanguloMaiorArea() + " com área de " + Retangulo.getRetanguloMaiorArea().getArea() + " m².");
-    System.out.println("Retângulo de maior perímetro: " + Retangulo.getRetanguloMaiorPerimetro() + " com perímetro de " + Retangulo.getRetanguloMaiorPerimetro().getPerimetro() + " m.");
+        Relogio relogio1 = new Relogio((byte) 14, (byte) 4, (byte) 16);
+        Relogio relogio2 = new Relogio((byte) 7, (byte) 2, (byte) 8);
 
+        System.out.println("Horário autal do relógio 1: " + relogio1.getHora());
+        System.out.println("Horário autal do relógio 2: " + relogio2.getHora());
 
-    System.out.println("-------------------------------------------------------------------------------------------------------------");
+        System.out.println(
+                "Diferença de horas, minutos e segundos dos dois relógios: " + Relogio.difClocks(relogio1, relogio2));
+        Relogio.sincronizaRelogio(relogio1, relogio2);
 
-    System.out.println("\nRelógio - Laboratorio 2");
+        System.out.println(
+                "Horários do relógio 1 e 2 após a sincronização: " + relogio1.getHora() + " / " + relogio2.getHora());
 
-    Relogio relogio1 = new Relogio((byte)14, (byte)4, (byte)16);
-    Relogio relogio2 = new Relogio((byte)7, (byte)2, (byte)8);
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------");
 
-    System.out.println("Horário autal do relógio 1: " + relogio1.getHora());
-    System.out.println("Horário autal do relógio 2: " +relogio2.getHora());
-
-    System.out.println("Diferença de horas, minutos e segundos dos dois relógios: " + Relogio.difClocks(relogio1, relogio2));
-    Relogio.sincronizaRelogio(relogio1, relogio2);
-
-    System.out.println("Horários do relógio 1 e 2 após a sincronização: " + relogio1.getHora() + " / " +  relogio2.getHora());
-
-    System.out.println("-------------------------------------------------------------------------------------------------------------");
-
-    System.out.println("Classe Produto - Laboratorio 2");
-    System.out.println("");
-
-    Produto fogao = new Produto("Fogão 4 bocas Eletrolux KL4003", 677, 0);
-    
-    for (String s : Produto.register) {
-        if(s == null)continue;
-        System.out.println(s);
-    }
-
-    System.out.println("-------------------------------------------------------------------------------------------------------------");
-
-    System.out.println("Classe Navio - Laboratorio 2");
-    System.out.println("");
-
-    Navio navio = new Navio();
-    String [][] tabuleiro = new String[10][10];
-
-    for(int i = 0; i < 10; i++){
-        for(int j = 0; j < 10; j++){
-            tabuleiro[i][j] = " .";
-        }
-    }
-
-    navio.setTamanho(5);
-    navio.setNomenclatura(" N");
-
-    solve(navio.getTamanho(),  tabuleiro, navio.getNomenclatura());
- 
-    for(int i = 0; i < 10; i++){
-        for(int j = 0; j < 10; j++){
-            System.out.print(tabuleiro[i][j]);
-        }
+        System.out.println("Classe Produto - Laboratorio 2");
         System.out.println("");
-    }
 
-    System.out.print("\nPosições encontradas do navio" + navio.getNomenclatura() + ": " + navio.getPosicoes(tabuleiro) + "\n");
-    System.out.println("Orientação do navio" + navio.getNomenclatura() + ": " + navio.getOrientacao(tabuleiro));
-    
-    Random p = new Random();
+        Produto fogao = new Produto("Fogão 4 bocas Eletrolux KL4003", 677, 0);
+        fogao.setDesconto(0);
 
-    while(navio.getTamanho() != 0){
-        int sortlinha = p.nextInt(10);
-        int sortColuna = p.nextInt(10);
-        System.out.println("Posição a ser bombardeada: (" + sortlinha + "," + sortColuna + ")");
-        if(navio.bombardear(sortlinha, sortColuna, tabuleiro)){
-            System.out.println("Navio atingido!");
+        for (String s : Produto.register) {
+            if (s == null)
+                continue;
+            System.out.println(s);
         }
-    }
-    
-    
-    
 
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------");
+
+        System.out.println("Classe Navio - Laboratorio 2");
+        System.out.println("");
+
+        Navio navio = new Navio();
+        String[][] tabuleiro = new String[10][10];
+        Random p = new Random();
+        String [] posicoesBombardeadas = new String[200];
+        int qtdbomb = 0;
+       
+
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                tabuleiro[i][j] = " .";
+            }
+        }
+
+        navio.setTamanho(5);
+        navio.setNomenclatura(" N");
+        solve(navio.getTamanho(), tabuleiro, navio.getNomenclatura());
+
+        System.out.println("-CAMPO DE BATALHA NAVAL-\n");
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                System.out.print(tabuleiro[i][j]);
+            }
+            System.out.println("");
+        }
+
+        System.out.print("\nPosições encontradas do navio" + navio.getNomenclatura() + ": " + navio.getPosicoes(tabuleiro) + "\n");
+        System.out.println("Orientação do navio" + navio.getNomenclatura() + ": " + navio.getOrientacao(tabuleiro));
+        System.out.println("Quantidade de navios " + navio.getNomenclatura() + " no campo: " + navio.getTamanho());
+
+        System.out.println("\n\nIniciando bombardeio!");
+        while (navio.getTamanho() != 0) {
+            int sortlinha = p.nextInt(10);
+            int sortColuna = p.nextInt(10);
+            String s = "(" + sortlinha + "," + sortColuna + ")";
+
+            if(!validaBombas(s, posicoesBombardeadas)){
+                posicoesBombardeadas[qtdbomb++] = s;
+
+                if (navio.bombardear(sortlinha, sortColuna, tabuleiro)) {
+                    System.out.println("Navio atingido!");
+                }
+            }
+        }
+
+        System.out.println("\nPosições do navio" + navio.getNomenclatura() + " que foram atingidas: " + navio.verificaPosicoesBombardeadas());
+        System.out.println("Situação atual do Navio" + navio.getNomenclatura() + " na Batalha naval: " + (navio.navioAfundado() ? "Afundado!" : "Vivo!"));
+        System.out.println("Quantidade de navios" + navio.getNomenclatura() + " na Batalha naval: " + navio.getTamanho());
+        System.out.println("Quantidade de bombas soltas: " + qtdbomb);
 
     }
 }
-        
-    
