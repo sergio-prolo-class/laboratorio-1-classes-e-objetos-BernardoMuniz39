@@ -17,6 +17,10 @@ public class Produto {
        
     }
 
+    static String [] getRegister(){
+        return register;
+    }
+
 
 
     static void updateRegister(String codigo, String nome, float preco, int desconto){

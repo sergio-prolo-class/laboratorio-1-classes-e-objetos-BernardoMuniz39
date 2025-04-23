@@ -297,8 +297,8 @@ public class App {
         Lampada lampada3 = new Lampada(true);
         Lampada lampada4 = new Lampada();
 
-        System.out.println("Estado da lâmpada 3: " + lampada3.verEstado());
-        System.out.println("Estado da lâmpada 4: " + lampada4.verEstado());
+        System.out.println("Estado da lâmpada 3: " + (lampada3.verEstado() ? "ligada." : "desligada."));
+        System.out.println("Estado da lâmpada 4: " + (lampada4.verEstado() ? "ligada." : "desligada."));
 
         System.out.println("Quantiadade de lâmpadas criadas: " + lampada3.getTotal());
 
@@ -368,7 +368,7 @@ public class App {
         Produto fogao = new Produto("Fogão 4 bocas Eletrolux KL4003", 677, 0);
         fogao.setDesconto(0);
 
-        for (String s : Produto.register) {
+        for (String s : Produto.getRegister()) {
             if (s == null)
                 continue;
             System.out.println(s);
